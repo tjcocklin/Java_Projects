@@ -10,7 +10,7 @@
 </head>
 <body>
  <div class="header">
-   <h1>Welcome to Alimta's Inn</h1>
+   <h1>Welcome to Almita's Inn</h1>
  </div>
  
  <div class="navigation">
