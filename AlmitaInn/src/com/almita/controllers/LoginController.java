@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.sql.*;
+
 /**
- * Servlet implementation class WelcomeController
+ * Servlet implementation class LoginController
  */
-@WebServlet("/WelcomeController")
-public class WelcomeController extends HttpServlet {
+@WebServlet("/LoginController")
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WelcomeController() {
+    public LoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +28,7 @@ public class WelcomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 doPost(request,response);
+		doPost(request,response);
 	}
 
 	/**
@@ -34,6 +36,17 @@ public class WelcomeController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
+		
+		
+		
 	}
-
+    
+	protected void getUserDetails() {
+		
+		//TODO get room/ activities / purchase details
+		
+	}
+	
 }
