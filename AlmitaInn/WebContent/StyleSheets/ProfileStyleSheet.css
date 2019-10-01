@@ -1,0 +1,65 @@
+
+.header{
+  text-align: Center;
+  color: orange;
+  background-color: #3A2F0B;
+  width: auto;
+  height: 50px;
+  margin-top:10px;
+  margin-bottom: 10px;
+
+}
+
+.navigation{
+	
+  float: left;
+  background-color: #3A2F0B;
+  border-color: red;
+  border-style: solid;
+  border-width: 5px;
+}
+
+.navigation ul {
+  
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+.navigation li {
+ 
+  float: left;
+  
+}
+
+.navigation li a{
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color:orange;
+}
+
+
+.navigation li a:hover:not(.active) {
+  background-color: #0B6138;
+}
+
+.active {
+  background-color: black;
+}
+
+body {
+	background-image: url('/AlmitaInn/Images/inn.jpg');
+    background-repeat:no-repeat;
+    background-size: 100% 600%;
+} 
+
+.dropDown select{
+	width: 100px;
+	
+
+}
+
