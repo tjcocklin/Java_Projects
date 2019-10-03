@@ -48,8 +48,10 @@ public class LoginController extends HttpServlet {
 //		
 //		Customer newCustomer = new Customer(fName,lName,phone);
 		
-//		request.setAttribute("newCustomer", newCustomer);
 		
+//		request.setAttribute("newCustomer", newCustomer);
+		 
+		request.setAttribute("custRoom", custRoom);
 		getServletContext()
 		.getRequestDispatcher(url)
 		.forward(request, response);

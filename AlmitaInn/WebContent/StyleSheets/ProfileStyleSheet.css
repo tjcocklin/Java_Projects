@@ -57,9 +57,40 @@ body {
     background-size: 100% 600%;
 } 
 
-.dropDown select{
-	width: 100px;
-	
-
+.displayMode{
+	color: orange;
+	background-color: #3A2F0B;
+	border-style:solid;
+	font-size:40px;
+	text-align: center;
+    margin-left: 500px;
+    margin-right: 500px;	
+    margin-top: 50px;
 }
 
+#dropDown{
+  width: 100px;
+  margin-top:25px;
+  margin-right: 25px;
+  margin-bottom: 25px;
+  font-size:20px;
+}
+
+.dropDownOutPut{
+	background-color: white;
+	border-Style: solid;
+	border-color: blue;
+    
+    Margin-left: 200px;
+    Margin-right: 200px;
+        
+    Width: fit;
+    height: 200px;
+}
+
+#outPut{
+	
+	border-style: solid;
+	border-color: green;
+	
+}

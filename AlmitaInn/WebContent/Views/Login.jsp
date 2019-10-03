@@ -14,7 +14,7 @@
   </div>
   
   <div class=Login >
-    <form action="LoginController">
+    <form action="../LoginController" method="post">
      e-mail:
      <input type="email" name=e-mail id=e-mail><br>
      password:
