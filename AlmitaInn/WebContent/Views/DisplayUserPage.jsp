@@ -6,11 +6,11 @@
 <head>
    <meta charset="ISO-8859-1">
    <title>Welcome back!</title>
-   <script type= text/javascript src="../JavaScript/userProfile.js"></script>
+   <script type= text/javascript src="JavaScript/userProfile.js"></script>
    <link rel="stylesheet" href="/AlmitaInn/StyleSheets/ProfileStyleSheet.css" type="text/css">
   
 </head>
-<body onload="loadRoom()">
+<body>
  
  <div class="header">
    <h1>Profile</h1>
@@ -29,8 +29,10 @@
   </select>
  </div>
 
- <div class="dropDownOutPut">
-  
+ <div id="dropDownOutPut">
+   <pre>Room ID: ${custRoom.roomID}</pre>
+   <pre>Description: ${custRoom.description}</pre>
+   <pre>Price: $${custRoom.price}</pre>
  </div>
 
 

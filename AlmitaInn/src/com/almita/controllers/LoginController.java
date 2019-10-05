@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String url = "/DisplayUSerPage.jsp";
+		String url = "/Views/DisplayUserPage.jsp";
 		String email = request.getParameter("e-mail");
 		String passWord = request.getParameter("password");
 		
@@ -76,10 +76,19 @@ public class LoginController extends HttpServlet {
 		    myConnection = DriverManager.getConnection(url,user,pwd);
 		    Statement s = myConnection.createStatement();
 		   
+		    String apos="\'";
+		    String sPass=pwd+"withsalt";
 		    
-		    String queryRoom = "SELECT room_ID, description, price"+
-		    		            "FROM customer INNER JOIN room ON cust_ID;";
+		    String queryRoom = "SELECT "+
+		    		             "room_ID, description, price "+
+		    		            "FROM "+
+		    		             "room "+
+		    		            "WHERE "+
+		    		             "room.cust_ID = "+
+		    		               "(select cust_ID FROM pwd_table WHERE pwd_table.pwd="+apos+sPass+apos+");";
 		    
+		    
+		   // System.out.println(queryRoom);
 		    ResultSet queryResults;
 		    
 		   	    
@@ -90,11 +99,11 @@ public class LoginController extends HttpServlet {
 		    
 		    while(queryResults.next()) {
 		    	
-		    	custRoom.setCustomerID(queryResults.getInt("cust_ID"));
+		    	//custRoom.setCustomerID(queryResults.getInt("cust_ID"));
 		    	custRoom.setDescription(queryResults.getString("description"));
 		    	
 		    	custRoom.setRoomID(queryResults.getInt("room_ID"));
-		    	custRoom.setPrice(queryResults.getDouble("cust_ID"));
+		    	custRoom.setPrice(queryResults.getDouble("price"));
 		    }
 		
 		
