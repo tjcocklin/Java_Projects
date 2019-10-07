@@ -10,33 +10,43 @@
    <link rel="stylesheet" href="/AlmitaInn/StyleSheets/ProfileStyleSheet.css" type="text/css">
   
 </head>
-<body>
+  <script type="text/javascript"></script>
+
+
+<body onload="loadDefault()">
  
  <div class="header">
    <h1>Profile</h1>
  </div>
  
 
-
  <div class="displayMode">
   <label for="dropDown" >Show:</label>
-  <select name="dropDown"id="dropDown">
+  <select name="dropDown"id="dropDown" onchange= "loadData()">
         
      <option value="Room">Room</option>
-     <option value="Activites">Activities</option>
-     <option value="Purchases">Store</option>
+     <option value="Activities">Activities</option>
+     <option value="Purchases">Purchases</option>
   
   </select>
  </div>
-
- <div id="dropDownOutPut">
-   <pre>Room ID: ${custRoom.roomID}</pre>
-   <pre>Description: ${custRoom.description}</pre>
-   <pre>Price: $${custRoom.price}</pre>
- </div>
-
-
-
+ <div class="container">
+	 <div id="Room">
+	   <pre>Room ID: ${custRoom.roomID}</pre>
+	   <pre>Description: ${custRoom.description}</pre>
+	   <pre>Price: $${custRoom.price}</pre>
+	 </div>
+	
+	 <div id="Activities">
+	   <pre>Activity ID: ${custRoom.roomID}</pre>
+	   <pre>Description: ${custRoom.description}</pre>
+	 </div>
+	 
+	 <div id="Purchases">
+	   <pre>Item Name: ${custRoom.roomID}</pre>
+	   <pre>Description: ${custRoom.description}</pre>
+	 </div>
+</div>
 
 
 </body>

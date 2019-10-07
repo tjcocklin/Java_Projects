@@ -66,31 +66,68 @@ body {
     margin-left: 500px;
     margin-right: 500px;	
     margin-top: 50px;
+   
 }
 
 #dropDown{
-  width: 100px;
+  width: 110px;
   margin-top:25px;
   margin-right: 25px;
   margin-bottom: 25px;
   font-size:20px;
 }
 
-#dropDownOutPut{
-	background-color: white;
-	border-Style: solid;
-	border-color: blue;
-    
-    Margin-left: 200px;
-    Margin-right: 200px;
-        
-    Width: fit;
-    height: 200px;
-}
-
-#outPut{
+.container{
+	
+	margin: 10px;
+	position: relative;
 	
 	border-style: solid;
-	border-color: green;
+	border-color: orange;
+	Margin-left: 200px;
+    Margin-right: 200px;
 	
+	width: 956px;
+	height: 156px;
 }
+
+
+
+#Room{
+	position: absolute;
+	visibility: visible;
+	background-color: white;
+	border-Style: solid;
+	border-color: black;
+    Width: 950px;
+    height: 150px;
+    z-index:3;
+    top:0;
+    left:0;
+}
+#Activities{
+	position: absolute;
+	visibility: visible;
+	background-color: red;
+	border-Style: solid;
+	border-color: black;
+    Width: 950px;
+    height: 150px;
+    z-index:2;
+    top:0;
+    left:0;
+}
+#Purchases{
+	position: absolute;
+	visibility: visible;
+	background-color: blue;
+	border-Style: solid;
+	border-color: black;
+    Width: 950px;
+    height: 150px;
+    z-index:1;
+    top:0;
+    left:0;
+}
+
+

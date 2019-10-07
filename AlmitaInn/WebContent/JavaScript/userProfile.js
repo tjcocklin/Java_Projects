@@ -1,21 +1,46 @@
 
 
 
-function loadRoom() 
+function loadDefault() 
 {
 		
-	alert("its working!");
-    
-    var parentElement = document.getElementById("dropDownOutPut");   
-//    var newElement = document.createElement("p");
-//    var node= document.createTextNode("Room number: ${custRoom.ID}");
-    
-    var cNodes= parentElement.children;
-    
-    cNodes[0].innerHTML="${custRoom.roomID}"; //"Here's your room: deomNum";
-    
-//    newElement.appendChild(node);
-//    parentElement.appendChild(newElement);
-
-
+	var selected = document.getElementById("dropDown").value;
+	//alert("selected: "+selected);
+	
+	makeVisible(selected);
+  
 }
+
+
+function loadData()
+{
+	var selected = document.getElementById("dropDown").value;
+	//alert("new selected: "+selected);
+	makeVisible(selected);
+}
+
+
+
+function makeVisible(elem)
+{
+   arr=['Room','Activities','Purchases']
+   
+   
+   
+   for( i=0; i < arr.length; i++)
+   {
+	   
+	   if(elem == arr[i])
+	   {
+		   document.getElementById(arr[i]).style.visibility= "visible";
+	   }
+	   else
+	   {
+		   document.getElementById(arr[i]).style.visibility= "hidden";
+	   }
+	   
+   }
+     
+	
+}
+
