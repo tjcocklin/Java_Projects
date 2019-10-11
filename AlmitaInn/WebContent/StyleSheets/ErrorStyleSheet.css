@@ -1,0 +1,29 @@
+.Error_Message {
+   
+   text-align: center;
+   color: black;
+   margin-left: 200px;
+   margin-right: 200px;
+}
+
+
+.Error_Links{
+  
+  align: center;
+  margin: 200px;	
+  max-width: fit;
+  height: 100px;
+}
+
+#login_Link{ 
+  
+   float:left;
+   background-color:grey;
+}
+
+#home_Link{
+	
+    float:right;
+    text-align: right;
+    background-color:grey;
+}

@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Login</title>
 <link rel="stylesheet" href="/AlmitaInn/StyleSheets/LoginStyleSheet.css" type="text/css">
 </head>
@@ -13,17 +15,18 @@
     <h1>Sign in</h1>
   </div>
   
-  <div class=Login >
-    <form action="../LoginController" method="post">
-     e-mail:
-     <input type="text" name=e-mail id=e-mail><br>
-     password:
-     <input type="password" name=password id=password><br>
-     <input type="submit" value="Login" id=submitButton>
-     <a href="CreateAccount.jsp" id=createLink>Create account </a>
-    </form>
+  <div class="container">
+	  <div class=Login >
+	    <form action="../LoginController" method="post">
+	     e-mail:
+	     <input type="email" name=e-mail id=e-mail><br>
+	     password:
+	     <input type="password" name=password id=password><br>
+	     <input type="submit" value="Login" id=submitButton>
+	     <a href="CreateAccount.jsp" id=createLink>Create account </a>
+	    </form>
+	  </div>
   </div>
-  
   
   
 </body>

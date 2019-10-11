@@ -4,6 +4,7 @@
 <html>
 <head>
    <meta charset="ISO-8859-1">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Welcome to Alimta's!</title>
    <link rel="stylesheet" href="/AlmitaInn/StyleSheets/WelcomeStyleSheet.css" type="text/css">
    
@@ -16,10 +17,10 @@
  <div class="navigation">
    <ul >
 	 <li><a class="active" href="AlmitaInn/Welcome.jsp">Home</a></li>
-	 <li><a  href="AlmitaInn/Features.jsp">Features</a></li>
-	 <li><a  href="AlmitaInn/Login.jsp">Login</a></li>
-	 <li><a  href="AlmitaInn/Contact.jsp">Contact</a></li>
-	 <li><a  href="AlmitaInn/About.jsp">About</a></li>
+	 <li><a  href="Features.jsp">Features</a></li>
+	 <li><a  href="Login.jsp">Login</a></li>
+	 <li><a  href="Contact.jsp">Contact</a></li>
+	 <li><a  href="About.jsp">About</a></li>
   </ul>
 </div>
 

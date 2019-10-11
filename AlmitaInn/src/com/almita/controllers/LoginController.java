@@ -1,6 +1,8 @@
 package com.almita.controllers;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,88 +40,99 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String url = "/Views/DisplayUserPage.jsp";
-		String email = request.getParameter("e-mail");
-		String passWord = request.getParameter("password");
-		
-		Room custRoom;
+//		String url = "/Views/DisplayUserPage.jsp";
+//		String email = request.getParameter("e-mail");
+//		String passWord = request.getParameter("password");
+//		
+//		Room custRoom;
 				
-		custRoom= getUserRoom(email,passWord);// it may be null
+//		PrintWriter out = response.getWriter();
+//		out.println("Made it to login controller");
+		
+		
+		//custRoom= getUserRoom(email,passWord);// it may be null
 //		
 //		Customer newCustomer = new Customer(fName,lName,phone);
-		
-		
+
 //		request.setAttribute("newCustomer", newCustomer);
 		 
-		request.setAttribute("custRoom", custRoom);
+//		request.setAttribute("custRoom", custRoom);
+//		getServletContext()
+//		.getRequestDispatcher(url)
+//		.forward(request, response);
+		
+		String url = "/Views/DisplayUserPage.jsp";
+		
 		getServletContext()
 		.getRequestDispatcher(url)
 		.forward(request, response);
 		
 		
-		
-		
 	}
+	
+	
+	
+	
     
-	protected Room getUserRoom(String email,String pass ) {
-		
-        Connection myConnection;
-		Room toReturn= null;
-		try {
-			
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		    
-			String url = "jdbc:mysql://127.0.0.1/almita_Inn";
-		    String user= email; 
-		    String pwd=pass; 
-		    
-		    myConnection = DriverManager.getConnection(url,user,pwd);
-		    Statement s = myConnection.createStatement();
-		   
-		    String apos="\'";
-		    String sPass=pwd+"withsalt";
-		    
-		    String queryRoom = "SELECT "+
-		    		             "room_ID, description, price "+
-		    		            "FROM "+
-		    		             "room "+
-		    		            "WHERE "+
-		    		             "room.cust_ID = "+
-		    		               "(select cust_ID FROM pwd_table WHERE pwd_table.pwd="+apos+sPass+apos+");";
-		    
-		    
-		   // System.out.println(queryRoom);
-		    ResultSet queryResults;
-		    
-		   	    
-		    queryResults=s.executeQuery(queryRoom);
-		     
-		    Room custRoom= new Room();
-		    
-		    
-		    while(queryResults.next()) {
-		    	
-		    	//custRoom.setCustomerID(queryResults.getInt("cust_ID"));
-		    	custRoom.setDescription(queryResults.getString("description"));
-		    	
-		    	custRoom.setRoomID(queryResults.getInt("room_ID"));
-		    	custRoom.setPrice(queryResults.getDouble("price"));
-		    }
-		
-		
-		    return custRoom;
-		}
-		catch(ClassNotFoundException e) {
-			System.out.println("my 1 "+e.getMessage());
-			return toReturn;
-		}
-		catch(SQLException e) {
-			System.out.println("my 2 "+e.getMessage());
-		    return toReturn;
-		}
-		
-		
-	}
+//	protected Room getUserRoom(String email,String pass ) {
+//		
+//        Connection myConnection;
+//		Room toReturn= null;
+//		try {
+//			
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//		    
+//			String url = "jdbc:mysql://127.0.0.1/almita_Inn";
+//		    String user= email; 
+//		    String pwd=pass; 
+//		    
+//		    myConnection = DriverManager.getConnection(url,user,pwd);
+//		    Statement s = myConnection.createStatement();
+//		   
+//		    String apos="\'";
+//		    String sPass=pwd+"withsalt";
+//		    
+//		    String queryRoom = "SELECT "+
+//		    		             "room_ID, description, price "+
+//		    		            "FROM "+
+//		    		             "room "+
+//		    		            "WHERE "+
+//		    		             "room.cust_ID = "+
+//		    		               "(select cust_ID FROM pwd_table WHERE pwd_table.pwd="+apos+sPass+apos+");";
+//		    
+//		    
+//		   // System.out.println(queryRoom);
+//		    ResultSet queryResults;
+//		    
+//		   	    
+//		    queryResults=s.executeQuery(queryRoom);
+//		     
+//		    Room custRoom= new Room();
+//		    
+//		    
+//		    while(queryResults.next()) {
+//		    	
+//		    	//custRoom.setCustomerID(queryResults.getInt("cust_ID"));
+//		    	custRoom.setDescription(queryResults.getString("description"));
+//		    	
+//		    	custRoom.setRoomID(queryResults.getInt("room_ID"));
+//		    	custRoom.setPrice(queryResults.getDouble("price"));
+//		    }
+//		
+//		
+//		    return custRoom;
+//		}
+//		catch(ClassNotFoundException e) {
+//			System.out.println("my 1 "+e.getMessage());
+//			return toReturn;
+//		}
+//		catch(SQLException e) {
+//			System.out.println("my 2 "+e.getMessage());
+//		    return toReturn;
+//		}
+//		
+//		
+//	}
 	
 	
 }//end of class
