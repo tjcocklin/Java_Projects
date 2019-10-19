@@ -11,6 +11,12 @@
 
 ![image](https://user-images.githubusercontent.com/23157098/67137555-3afe1880-f205-11e9-8dc5-22d43860aa48.png)
 
+
+## Login Error Screen
+
+![image](https://user-images.githubusercontent.com/23157098/67137658-d6dc5400-f206-11e9-87d5-10733b0c1851.png)
+
+
 ## Profile page
 
 ![image](https://user-images.githubusercontent.com/23157098/67137585-d8594c80-f205-11e9-9aa0-a00c8346729a.png)
