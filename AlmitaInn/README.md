@@ -1,6 +1,6 @@
 # Almita's Inn 
 
-## This is a work in progress dynamic web project, that simulates a hotel's website, using an apache tomcat server, and MySQL as a backend database.
+## This is a work in progress dynamic web project, that simulates a hotel's website, using JSP files,an apache tomcat server, and MySQL as a backend database.
 
 
 ## Welcome Screen
