@@ -17,9 +17,18 @@
 <body onload="loadDefault()">
  
  <div class="header">
-   <h1>Profile</h1>
+   <h1>Welcome back ${custName}!</h1>
  </div>
- 
+  
+  <div class="navigation">
+   <ul >
+	 <li><a class="active" href="AlmitaInn/Welcome.jsp">profile</a></li>
+	 <li><a  href="Features.jsp">Log out</a></li>
+	 <li><a  href="Login.jsp">Activities</a></li>
+	 <li><a  href="Contact.jsp">Store</a></li>
+	 <li><a  href="About.jsp">Update my profile</a></li>
+  </ul>
+  </div>
 
  <div class="displayMode">
   <label for="dropDown" >Show:</label>
@@ -33,19 +42,61 @@
  </div>
  <div class="container">
 	 <div id="Room">
-	   <pre>Room ID: ${custRoom.roomID}</pre>
-	   <pre>Description: ${custRoom.description}</pre>
-	   <pre>Price: $${custRoom.price}</pre>
+	   <table >
+	   	<thead> 
+	    	<tr>
+	        	<th>Room ID</th>
+	         	<th>Description</th>
+            	<th>Price</th>	      
+	        </tr>
+	  	</thead>    
+	    <tbody>
+	    
+	     <%
+	               
+	    out.print(request.getAttribute("custRoom"));
+	   %>
+	   </tbody>
+	 </table>
+	    
 	 </div>
 	
 	 <div id="Activities">
-	   <pre>Activity ID: ${custRoom.roomID}</pre>
-	   <pre>Description: ${custRoom.description}</pre>
+	    <table class = "ActTable" >
+	   	<thead class = "ActTable"> 
+	    	<tr class = "ActTable">
+	        	<th class = "ActTable">Activity</th>
+	         	<th class = "ActTable">Description</th>
+            	     
+	        </tr>
+	  	</thead>    
+	    <tbody>
+	    
+	     <%
+	               
+	    out.print(request.getAttribute("custActs"));
+	   %>
+	   </tbody>
+	 </table>
 	 </div>
 	 
 	 <div id="Purchases">
-	   <pre>Item Name: ${custRoom.roomID}</pre>
-	   <pre>Description: ${custRoom.description}</pre>
+	  <table >
+	   	<thead> 
+	    	<tr>
+	        	<th>Receipt no.</th>
+	         	<th>Item</th>
+            	<th>Price</th>	      
+	        </tr>
+	  	</thead>    
+	    <tbody>
+	    
+	     <%
+	               
+	    out.print(request.getAttribute("custPurchases"));
+	   %>
+	   </tbody>
+	 </table>
 	 </div>
 </div>
 

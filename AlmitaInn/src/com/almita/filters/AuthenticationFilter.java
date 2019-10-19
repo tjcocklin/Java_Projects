@@ -18,8 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
+import com.almita.models.SecureLogin;
 import com.almita.models.UserConnection;
 /**
  * Servlet Filter implementation class AuthenticationFilter
@@ -58,7 +57,7 @@ public class AuthenticationFilter implements Filter {
 		
 		
 		     // hash the pwd
-		     pwd= hash(pwd);
+		     pwd= SecureLogin.hash(pwd);
 		     
 		     // authenticate
 		     int result= authenticate(email,pwd);
@@ -91,11 +90,7 @@ public class AuthenticationFilter implements Filter {
 		//System.out.println("Entering the authentication filter");
 	}
 
-	
-	private String hash(String pwd)
-	{
-		 return pwd+"withsalt";
-	}
+		
 	
 	
 	private int authenticate(String email, String saltedPwd) 
@@ -122,10 +117,10 @@ public class AuthenticationFilter implements Filter {
 			this.user.queryDB(query);
 
 			
-			while(this.user.getResult().next())
-			{
+			this.user.getResult().next();
+			
 			    toReturn = user.getResult().getInt("Count(*)");	
-			}
+			
 			
 						
 			

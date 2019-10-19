@@ -12,9 +12,9 @@
 
 .navigation{
 	
-  float: left;
+  float: right;
   background-color: #3A2F0B;
-  border-color: red;
+  
   border-style: solid;
   border-width: 5px;
 }
@@ -88,7 +88,7 @@ body {
 	Margin-left: auto;
     Margin-right: auto;
 	
-	width: 956px;
+	width: 935px;
 	height: 156px;
 }
 
@@ -100,35 +100,80 @@ body {
 	background-color: white;
 	border-Style: solid;
 	border-color: black;
-    Width: 950px;
+    Width: 930px;
     height: 150px;
     z-index:3;
     top:0;
     left:0;
+   
 }
 #Activities{
 	position: absolute;
 	visibility: visible;
-	background-color: red;
+	background-color: white;
 	border-Style: solid;
 	border-color: black;
-    Width: 950px;
+    Width: 930px;
     height: 150px;
     z-index:2;
     top:0;
     left:0;
+    
 }
 #Purchases{
 	position: absolute;
 	visibility: visible;
-	background-color: blue;
+	background-color: white;
 	border-Style: solid;
 	border-color: black;
-    Width: 950px;
+    Width: 930px;
     height: 150px;
     z-index:1;
     top:0;
     left:0;
+    
 }
 
+table thead tr{
+    display:block;
+  
+}
+
+th, td{
+	width: 300px;
+   
+}
+
+table  {
+    width:930px;
+  
+}
+
+
+table  tbody{
+  display:block;
+  height:125px;
+  overflow-y:scroll;
+  overflow-x:scroll;
+}
+
+thead {
+	background-color: grey;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align:center;
+}
+
+ th.ActTable {
+	width: 451px;
+	
+}
+
+td.ActTable{
+	
+	width: 451px;
+}
 

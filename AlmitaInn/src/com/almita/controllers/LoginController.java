@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.almita.models.Participant;
 import com.almita.models.Room;
+import com.almita.models.SecureLogin;
 
 import java.sql.*;
+import com.almita.models.UserConnection;
 
 /**
  * Servlet implementation class LoginController
@@ -38,30 +41,24 @@ public class LoginController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		
-//		String url = "/Views/DisplayUserPage.jsp";
-//		String email = request.getParameter("e-mail");
-//		String passWord = request.getParameter("password");
-//		
-//		Room custRoom;
-				
-//		PrintWriter out = response.getWriter();
-//		out.println("Made it to login controller");
-		
-		
-		//custRoom= getUserRoom(email,passWord);// it may be null
-//		
-//		Customer newCustomer = new Customer(fName,lName,phone);
-
-//		request.setAttribute("newCustomer", newCustomer);
-		 
-//		request.setAttribute("custRoom", custRoom);
-//		getServletContext()
-//		.getRequestDispatcher(url)
-//		.forward(request, response);
 		
 		String url = "/Views/DisplayUserPage.jsp";
+		String email = request.getParameter("e-mail");
+						
+		
+		String custRoom = getUserRoom(email);
+		String custActs = getActivities(email);
+		String custPurchases = getPurchases(email);
+		String custName = getUserName(email);
+		
+		
+		request.setAttribute("custRoom", custRoom);
+		request.setAttribute("custActs", custActs);
+		request.setAttribute("custPurchases", custPurchases);
+		request.setAttribute("custName", custName);
 		
 		getServletContext()
 		.getRequestDispatcher(url)
@@ -70,69 +67,216 @@ public class LoginController extends HttpServlet {
 		
 	}
 	
+	//
+	//
+	protected String getUserRoom(String email )
+	{
+		String toReturn = "blank";
+		
+		UserConnection user = new UserConnection();
+		
+			
+		String apos="\'";
+		String query= "SELECT "+
+	             		"room_ID, description, price "+
+	             	  "FROM "+
+	                     "room "+
+	                   "WHERE "+
+	                       "room.cust_ID = "+
+	                        "(select cust_ID FROM user_table WHERE email="+apos+email+apos+");";
+		
+		
+		user.queryDB(query);
+		
+		try 
+		{
+			  toReturn="";
+			  
+			  String roomID, price, description;
+			  
+			  while(user.getResult().next())
+			  {
+				
+				  roomID= ""+user.getResult().getInt("room_ID");
+				  description= user.getResult().getString("description");
+				  price = String.format("$%1.2f",user.getResult().getDouble("Price"));
+				  
+				  toReturn+="<tr><td>"+roomID+"</td>"+"<td>"+description+"</td>"+
+				            "<td>"+price+"</td></tr>";
+			  }
+		 
+		
+			 return toReturn;
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return toReturn;
+		}
+		finally 
+		{
+		   user.close();	
+		}
+				
+	}
 	
+	//
+	//
+    protected String getActivities(String email) 
+    {
+    	String toReturn="blank";
+    	UserConnection user = new UserConnection();
+		
+		
+		String apos="\'";
+		String subquery ="(SELECT cust_ID FROM user_table WHERE email ="+apos+email+apos+")";
+		String query="SELECT "+
+				       "activities.activity_name, description "+ 
+				     "FROM "+
+				       "activities, participants, user_table " + 
+				     "WHERE " + 
+				        "user_table.cust_ID ="+subquery+" "+
+				         "AND "+
+				         "participants.customer_ID ="+subquery+" "+
+				         "AND "+
+				         "participants.activity_name = activities.activity_name; ";
+				
+    	user.queryDB(query);
+    	try 
+		{
+    		String name, description;
+    		
+    		toReturn="";
+    		
+    		
+    		while(user.getResult().next()) 
+			{ 
+			   name = user.getResult().getString("activity_name");
+			   description = user.getResult().getString("description");
+			   
+			   toReturn+="<tr><td class= \"ActTable\">"+name+"</td>"+"<td class= \"ActTable\">"+description+"</td></tr>";
+			}
+			
+						
+			return toReturn;
+		}
+		
+    	catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return toReturn;
+		}
+		finally 
+		{
+		   user.close();	
+		}
+    	
+    	
+    }
+  	
+    //
+    //
+    protected String getPurchases(String email) 
+    {
+        String toReturn = "blank";
+		
+		UserConnection user = new UserConnection();
+		
+			
+		String apos="\'";
+		String query= "SELECT "+
+	             		"name, price, receipt_number "+
+	             	  "FROM "+
+	                     "purchase, item "+
+	                   "WHERE "+
+	                       "customer_ID = "+
+	                         "(select cust_ID FROM user_table WHERE email="+apos+email+apos+")"+
+	                       "AND "+
+	                         "purchase.item_ID = item.item_ID;";
+		
+		
+		user.queryDB(query);
+		
+		try 
+		{
+			
+			String item, price, receiptNo;
+			
+		   
+			toReturn="";
+	       
+		
+			while(user.getResult().next()) 
+			{
+			     item = user.getResult().getString("name");
+			     price = String.format("$%1.2f",user.getResult().getDouble("price"));
+			     receiptNo = ""+ user.getResult().getInt("receipt_number");
+				
+				 toReturn+="<tr><td>"+receiptNo+"</td>"+"<td>"+item+"</td>"+
+						 "<td>"+price+"</td><tr>";
+
+			}
+			
+			return toReturn;
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return toReturn;
+		}
+		finally 
+		{
+		   user.close();	
+		}
+    }
 	
-	
-    
-//	protected Room getUserRoom(String email,String pass ) {
-//		
-//        Connection myConnection;
-//		Room toReturn= null;
-//		try {
-//			
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//		    
-//			String url = "jdbc:mysql://127.0.0.1/almita_Inn";
-//		    String user= email; 
-//		    String pwd=pass; 
-//		    
-//		    myConnection = DriverManager.getConnection(url,user,pwd);
-//		    Statement s = myConnection.createStatement();
-//		   
-//		    String apos="\'";
-//		    String sPass=pwd+"withsalt";
-//		    
-//		    String queryRoom = "SELECT "+
-//		    		             "room_ID, description, price "+
-//		    		            "FROM "+
-//		    		             "room "+
-//		    		            "WHERE "+
-//		    		             "room.cust_ID = "+
-//		    		               "(select cust_ID FROM pwd_table WHERE pwd_table.pwd="+apos+sPass+apos+");";
-//		    
-//		    
-//		   // System.out.println(queryRoom);
-//		    ResultSet queryResults;
-//		    
-//		   	    
-//		    queryResults=s.executeQuery(queryRoom);
-//		     
-//		    Room custRoom= new Room();
-//		    
-//		    
-//		    while(queryResults.next()) {
-//		    	
-//		    	//custRoom.setCustomerID(queryResults.getInt("cust_ID"));
-//		    	custRoom.setDescription(queryResults.getString("description"));
-//		    	
-//		    	custRoom.setRoomID(queryResults.getInt("room_ID"));
-//		    	custRoom.setPrice(queryResults.getDouble("price"));
-//		    }
-//		
-//		
-//		    return custRoom;
-//		}
-//		catch(ClassNotFoundException e) {
-//			System.out.println("my 1 "+e.getMessage());
-//			return toReturn;
-//		}
-//		catch(SQLException e) {
-//			System.out.println("my 2 "+e.getMessage());
-//		    return toReturn;
-//		}
-//		
-//		
-//	}
+    //
+    //
+    protected String getUserName(String email)
+    {
+    	String toReturn = "blank";
+		
+		UserConnection user = new UserConnection();
+		
+			
+		String apos="\'";
+		String query= "SELECT "+
+	             		"F_name "+
+	             	  "FROM "+
+	                     "customer "+
+	                   "WHERE "+
+	                       "customer.cust_ID = "+
+	                        "(select cust_ID FROM user_table WHERE email="+apos+email+apos+");";
+		
+		
+		user.queryDB(query);
+		
+		try 
+		{
+			  		 
+			  
+			  user.getResult().next();
+			  				
+			  toReturn = user.getResult().getString("F_name");
+			    		 
+		
+			 return toReturn;
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return toReturn;
+		}
+		finally 
+		{
+		   user.close();	
+		}	
+    }
+
 	
 	
 }//end of class

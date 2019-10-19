@@ -3,26 +3,26 @@ package com.almita.models;
 public class Room {
 	
 	private int customerID;
-	
 	private String description;
-	
 	private double price;
 	private int roomID;
-	
+	private boolean vacant;
 	
 	public Room() {
 		this.customerID=-1;
 		this.description="none";
 		this.roomID=-1;
 		this.price=0;
+		this.vacant=true;
 	}
 	
-	public Room(int customerID, String description, double price, int roomID) {
+	public Room(int customerID, String description, double price, int roomID,boolean vacant) {
 		super();
 		this.customerID = customerID;
 		this.description = description;
 		this.price = price;
 		this.roomID = roomID;
+		this.vacant=vacant;
 	}
 	
 	
