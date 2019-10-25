@@ -27,7 +27,7 @@ public class UserConnection {
 		  this.statement= this.Con.createStatement();
 	
 	 	} catch(Exception e) {
-	 		System.out.println(e.getMessage());
+	 		System.out.println("Initialization failed "+e.getMessage());
 	 	}
 	}
 
@@ -53,7 +53,7 @@ public class UserConnection {
 			 this.results= this.statement.executeQuery(query);
 			 
 		   } 
-	       catch (SQLException e)
+	       catch (Exception e)
 	       {
 			 System.out.println("MY QUERY ERRORED: "+e.getMessage());
 		   } 
