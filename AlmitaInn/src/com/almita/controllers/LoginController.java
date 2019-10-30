@@ -14,7 +14,7 @@ import com.almita.models.Room;
 import com.almita.models.SecureLogin;
 
 import java.sql.*;
-import com.almita.models.UserConnection;
+import com.almita.models.DefaultUserConnection;
 
 /**
  * Servlet implementation class LoginController
@@ -73,7 +73,7 @@ public class LoginController extends HttpServlet {
 	{
 		String toReturn = "blank";
 		
-		UserConnection user = new UserConnection();
+		DefaultUserConnection user = new DefaultUserConnection();
 		
 			
 		String apos="\'";
@@ -126,7 +126,7 @@ public class LoginController extends HttpServlet {
     protected String getActivities(String email) 
     {
     	String toReturn="blank";
-    	UserConnection user = new UserConnection();
+    	DefaultUserConnection user = new DefaultUserConnection();
 		
 		
 		String apos="\'";
@@ -182,7 +182,7 @@ public class LoginController extends HttpServlet {
     {
         String toReturn = "blank";
 		
-		UserConnection user = new UserConnection();
+		DefaultUserConnection user = new DefaultUserConnection();
 		
 			
 		String apos="\'";
@@ -239,7 +239,7 @@ public class LoginController extends HttpServlet {
     {
     	String toReturn = "blank";
 		
-		UserConnection user = new UserConnection();
+		DefaultUserConnection user = new DefaultUserConnection();
 		
 			
 		String apos="\'";

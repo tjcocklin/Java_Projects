@@ -23,7 +23,7 @@
 	     password:
 	     <input type="password" name=password id=password><br>
 	     <input type="submit" value="Login" id=submitButton>
-	     <a href="CreateAccount.jsp" id=createLink>Create account </a>
+	     <a href="NewUser.jsp" id=createLink>Create account </a>
 	    </form>
 	  </div>
   </div>

@@ -7,18 +7,22 @@ public class UserConnection {
 	
 	
 
-	private final String url = "jdbc:mysql://127.0.0.1/almita_Inn";
-    private final String user= "default"; 
-    private final String pwd= "pass"; 
+	public final String url = "jdbc:mysql://127.0.0.1/almita_Inn";
+  
 	
-    private Connection Con;
-    private Statement statement;
-    private ResultSet results;
+    public Connection Con;
+    public Statement statement;
+    public ResultSet results;
 	
     
-	// Constructor opens default connection to almitaInn for users (nonAdmin)
-
-	public UserConnection() 
+	
+    public UserConnection() 
+    {
+    	
+    }
+    
+    // Constructor opens connection to almitaInn 
+    public UserConnection(String user, String pwd) 
 	{
 		try 
 		{
