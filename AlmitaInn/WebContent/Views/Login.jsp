@@ -19,9 +19,9 @@
 	  <div class=Login >
 	    <form action="../LoginController" method="post">
 	     e-mail:
-	     <input type="email" name=e-mail id=e-mail><br>
+	     <input required type="email" name=e-mail id=e-mail><br>
 	     password:
-	     <input type="password" name=password id=password><br>
+	     <input required type="password" name=password id=password><br>
 	     <input type="submit" value="Login" id=submitButton>
 	     <a href="NewUser.jsp" id=createLink>Create account </a>
 	    </form>
