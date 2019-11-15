@@ -55,18 +55,31 @@ public class NewUserController extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		
+		String url;
 		getParameters(request);
+		
 		
 		//ToDo test if email address is not a duplicate.	
 		if(emailIsDuplicate())
 		{
-		   //goto error page	
+		   //goto error page
+			url ="/Views/NewUserErrorPage.jsp";
+			getServletContext()
+			.getRequestDispatcher(url);
 		}
 		else 
 		{
 		   //put data into customer table and get cust_ID for the other tables
+			createCustomerEntry();
+			retrieveCustID();
 		  // put data into user table and contact table
+			insertUser();
+			insertContact();
+		 // go to success page 
+			
+			url="/Views/AccountCreated.jsp";
+			getServletContext()
+			.getRequestDispatcher(url);
 		}
 	}
     
@@ -122,14 +135,61 @@ public class NewUserController extends HttpServlet
     	String query= "INSERT INTO customer(F_Name,L_Name) Values("+fName+lName+")";
     	
     	con.queryDB(query);
+    	con.close();
     	   	
     	
     }
     
     private void retrieveCustID() 
     {
-    
+    	DefaultUserConnection con = new DefaultUserConnection();
+    	String query = "SELECT"+
+    			         "cust_ID FROM customer"+
+    			       "WHERE"+
+    			         "F_name ="+fName+
+    			          "AND"+
+    			         "L_Name ="+lName+";";
+    	
+    	
+    	con.queryDB(query);
+    	con.getResult();
+    	
+    	try 
+		{
+			con.getResult().next();
+			cust_ID= con.getResult().getInt("cust_ID");
+		    
+			con.close();
+			
+			
+		}
+    	catch(SQLException e)
+    	{
+    		System.out.println("from retrieve cust_ID: "+e.getMessage());
+		    con.close();
+    	}
+    	
     }
+    
+    private void insertUser() 
+    {
 
+    	DefaultUserConnection con = new DefaultUserConnection();
+    	String query= "INSERT INTO user_table (email,pwd,cust_ID)"+
+    			                   "Values("+email+pwd+cust_ID+");";
+    	
+    	con.queryDB(query);
+    	con.close();
+    }
+    
+    private void insertContact()
+    {
+    	DefaultUserConnection con = new DefaultUserConnection();
+    	String query= "INSERT INTO contact(cust_ID, phone, street, city, state)"+
+    			                   "Values("+cust_ID+phone+street+city+state+");";
+    	
+    	con.queryDB(query);
+    	con.close();
+    }
 
 }
