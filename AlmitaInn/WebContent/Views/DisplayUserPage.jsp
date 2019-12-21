@@ -23,7 +23,7 @@
   <div class="navigation">
    <ul >
 	 <li><a class="active" href="AlmitaInn/Welcome.jsp">profile</a></li>
-	 <li><a  href="Features.jsp">Log out</a></li>
+	 <li><a  href="Welcome.jsp">Log out</a></li>
 	 <li><a  href="Login.jsp">Activities</a></li>
 	 <li><a  href="Contact.jsp">Store</a></li>
 	 <li><a  href="About.jsp">Update my profile</a></li>

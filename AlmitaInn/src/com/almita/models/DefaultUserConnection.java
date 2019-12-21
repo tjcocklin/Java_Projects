@@ -1,5 +1,5 @@
 package com.almita.models;
-
+import java.sql.*;
 public class DefaultUserConnection extends UserConnection 
 {
 	 
@@ -22,8 +22,8 @@ public class DefaultUserConnection extends UserConnection
 	    super.queryDB(query);	 
 	 }
 
-     public void getResults ()
+     public ResultSet getResults ()
      {
-    	 super.getResult();
+    	 return super.getResult();
      }
 }

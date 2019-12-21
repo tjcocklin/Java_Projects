@@ -16,7 +16,7 @@
 
   <div class= "container">
     <div id="formContainer">
-        <form id= "userInput"action="">
+        <form id= "userInput"action="../NewUserController" method="post">
 	        <div id="name">
 		        <h3>Name</h3>
 		        First Name:

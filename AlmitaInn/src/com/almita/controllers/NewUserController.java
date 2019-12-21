@@ -32,6 +32,7 @@ public class NewUserController extends HttpServlet
     private String pwd;
    
 	private int cust_ID;
+	private String apos="\'";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -107,17 +108,27 @@ public class NewUserController extends HttpServlet
 			
 	    DefaultUserConnection con = new DefaultUserConnection();
 	    
-		String query = "SELECT EXISTS (SELECT email from user_table WHERE email ="+email+ ") res FROM user_table";
+	    
+		String query = "SELECT "+
+	                       "COUNT(email) "+
+				        "FROM "+
+	                       "user_table "+ 
+				        "WHERE "+
+	                       "email ="+apos+email+apos+";";
+		
+		System.out.println(query);
 		
 		con.queryDB(query);
 		
 		try 
 		{
-			con.getResult().next();
-			res= con.getResult().getInt("res");
+			
+			con.getResults().next();
+			res= con.getResult().getInt("COUNT(email)");
+		    
 		    
 			con.close();
-			return (res == 1)? true: false;
+			return (res >= 1)? true: false;
 			
 		}
 		catch (SQLException e) 
