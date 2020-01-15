@@ -66,21 +66,24 @@ public class NewUserController extends HttpServlet
 		   //goto error page
 			url ="/Views/NewUserErrorPage.jsp";
 			getServletContext()
-			.getRequestDispatcher(url);
+			.getRequestDispatcher(url)
+			.forward(request, response);
 		}
 		else 
 		{
-		   //put data into customer table and get cust_ID for the other tables
-			createCustomerEntry();
-			retrieveCustID();
-		  // put data into user table and contact table
+		   //get next customers id and user Data and insert them into their tables.
+			getNextCustID();
 			insertUser();
+		  
+			// put data into customer table and contact table
+			createCustomer();
 			insertContact();
-		 // go to success page 
+		    // go to success page 
 			
 			url="/Views/AccountCreated.jsp";
-			getServletContext()
-			.getRequestDispatcher(url);
+			 getServletContext()
+			.getRequestDispatcher(url)
+			.forward(request, response);
 		}
 	}
     
@@ -140,27 +143,24 @@ public class NewUserController extends HttpServlet
 		
 					
 	}
-    private void createCustomerEntry() 
+    private void createCustomer() 
     {
     	DefaultUserConnection con = new DefaultUserConnection();
-    	String query= "INSERT INTO customer(F_Name,L_Name) Values("+fName+lName+")";
     	
-    	con.queryDB(query);
+    	String cmd= "INSERT INTO customer(F_Name,L_Name,cust_ID)"
+    			+ " Values("+apos+fName+apos+','+apos+lName+apos+','+apos+cust_ID+apos+")";
+    	
+    	System.out.println(cmd);
+    	con.updateDB(cmd);
     	con.close();
     	   	
     	
     }
     
-    private void retrieveCustID() 
+    private void getNextCustID() 
     {
     	DefaultUserConnection con = new DefaultUserConnection();
-    	String query = "SELECT"+
-    			         "cust_ID FROM customer"+
-    			       "WHERE"+
-    			         "F_name ="+fName+
-    			          "AND"+
-    			         "L_Name ="+lName+";";
-    	
+    	String query = "SELECT COUNT(cust_ID) as res FROM customer";
     	
     	con.queryDB(query);
     	con.getResult();
@@ -168,15 +168,17 @@ public class NewUserController extends HttpServlet
     	try 
 		{
 			con.getResult().next();
-			cust_ID= con.getResult().getInt("cust_ID");
+			cust_ID= con.getResult().getInt("res");
 		    
 			con.close();
+		    System.out.println(cust_ID);	
 			
-			
+		    cust_ID++;
+		    
 		}
     	catch(SQLException e)
     	{
-    		System.out.println("from retrieve cust_ID: "+e.getMessage());
+    		System.out.println("from getNext cust_ID: "+e.getMessage());
 		    con.close();
     	}
     	
@@ -186,20 +188,23 @@ public class NewUserController extends HttpServlet
     {
 
     	DefaultUserConnection con = new DefaultUserConnection();
-    	String query= "INSERT INTO user_table (email,pwd,cust_ID)"+
-    			                   "Values("+email+pwd+cust_ID+");";
+    	String cmd= "INSERT INTO user_table (email,pwd,cust_ID)"+
+    			                   "Values("+apos+email+apos+','+apos+pwd+apos+','+cust_ID+");";
     	
-    	con.queryDB(query);
+    	System.out.println(cmd);
+    	con.updateDB(cmd);
     	con.close();
     }
     
     private void insertContact()
     {
     	DefaultUserConnection con = new DefaultUserConnection();
-    	String query= "INSERT INTO contact(cust_ID, phone, street, city, state)"+
-    			                   "Values("+cust_ID+phone+street+city+state+");";
+    	String cmd= "INSERT INTO contact(cust_ID, phone, street, city, state)"+
+    			                   "Values("+cust_ID+','+apos+phone+apos+','+apos+street+apos+
+    			                   ','+apos+city+apos+','+apos+state+apos+");";
     	
-    	con.queryDB(query);
+    	System.out.println(cmd);
+    	con.updateDB(cmd);
     	con.close();
     }
 
