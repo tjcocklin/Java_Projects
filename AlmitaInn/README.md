@@ -32,3 +32,6 @@
 ![image](https://user-images.githubusercontent.com/23157098/67137776-87972300-f208-11e9-95e2-5eadda3c21e0.png)
 
 
+## New Account creation page
+
+![image](https://user-images.githubusercontent.com/23157098/71303174-f0bf2200-2382-11ea-987e-75c10d15e783.png)
